@@ -1,6 +1,6 @@
 NAME =			centos
 VERSION =		latest
-VERSION_ALIASES =	7.2.1511 7.2 7
+VERSION_ALIASES =	7.3.1611 7.3 7
 TITLE =			CentOS 7
 DESCRIPTION =		CentOS 7
 SOURCE_URL =		https://github.com/scaleway/image-centos
