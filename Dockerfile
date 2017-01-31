@@ -15,7 +15,7 @@ RUN (cd /lib/systemd/system/sysinit.target.wants/; \
 	rm -f /lib/systemd/system/anaconda.target.wants/*;
 
 # Environment
-ENV SCW_BASE_IMAGE="scaleway/centos:latest" \
+ENV SCW_BASE_IMAGE="scaleway/centos:7.3.1611" \
 	ARCH="x86_64"
 
 # Adding and calling builder-enter
@@ -31,7 +31,13 @@ RUN yum install -y \
 		ssh \
 		sudo \
 	&& /usr/local/sbin/scw-builder-enter \
-	&& yum clean all
+	&& yum clean all \
+	&& mkdir -pm 0750 /usr/share/shunit2 \
+	&& curl -Sso /usr/share/shunit2/shunit2 https://raw.githubusercontent.com/kward/shunit2/source/2.1.6/src/shunit2 \
+	&& curl -Sso /usr/share/shunit2/shunit2_test_helpers https://raw.githubusercontent.com/kward/shunit2/source/2.1.6/src/shunit2_test_helpers \
+	&& chmod 0755 /usr/share/shunit2/shunit2 \
+	&& chmod 0644 /usr/share/shunit2/shunit2_test_helpers \
+	&& ln -s /usr/share/shunit2/shunit2 /usr/bin/
 
 # Patch rootfs
 COPY ./overlay-image-tools \
