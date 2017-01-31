@@ -33,8 +33,10 @@ RUN yum install -y \
 	&& /usr/local/sbin/scw-builder-enter \
 	&& yum clean all \
 	&& mkdir -pm 0750 /usr/share/shunit2 \
-	&& curl -Sso /usr/share/shunit2/shunit2 https://raw.githubusercontent.com/kward/shunit2/source/2.1.6/src/shunit2 \
-	&& curl -Sso /usr/share/shunit2/shunit2_test_helpers https://raw.githubusercontent.com/kward/shunit2/source/2.1.6/src/shunit2_test_helpers \
+	&& curl -Sso /usr/share/shunit2/shunit2 \
+		https://raw.githubusercontent.com/kward/shunit2/source/2.1.6/src/shunit2 \
+	&& curl -Sso /usr/share/shunit2/shunit2_test_helpers \
+		https://raw.githubusercontent.com/kward/shunit2/source/2.1.6/src/shunit2_test_helpers \
 	&& chmod 0755 /usr/share/shunit2/shunit2 \
 	&& chmod 0644 /usr/share/shunit2/shunit2_test_helpers \
 	&& ln -s /usr/share/shunit2/shunit2 /usr/bin/
